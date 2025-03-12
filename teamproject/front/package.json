@@ -3,10 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "axios": "^1.8.3",
     "cra-template": "1.2.0",
     "date-fns": "^4.1.0",
     "express": "^4.21.2",
+=======
+    "axios": "^1.8.2",
+    "cra-template": "1.2.0",
+    "date-fns": "^4.1.0",
+>>>>>>> 43e5ec57da1c2a0fee14d8ed39d99f418504bcb9
     "framer-motion": "^12.4.1",
     "nodemon": "^3.1.9",
     "react": "^19.0.0",
@@ -16,7 +22,11 @@
     "web-vitals": "^4.2.4"
   },
   "scripts": {
+<<<<<<< HEAD
     "start": "node ./testServer/server.js",
+=======
+    "start": "react-scripts start",
+>>>>>>> 43e5ec57da1c2a0fee14d8ed39d99f418504bcb9
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -38,9 +48,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+<<<<<<< HEAD
   },
   "main": "index.js",
   "author": "",
   "license": "ISC",
   "description": ""
+=======
+  }
+>>>>>>> 43e5ec57da1c2a0fee14d8ed39d99f418504bcb9
 }
