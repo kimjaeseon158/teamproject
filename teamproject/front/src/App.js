@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import logo from './logo.svg';
+>>>>>>> 43e5ec57da1c2a0fee14d8ed39d99f418504bcb9
 import './App.css';
 
 function App(){

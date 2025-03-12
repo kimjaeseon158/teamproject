@@ -1,5 +1,9 @@
 import './login.css';
+<<<<<<< HEAD
 import { useState, useNavigate } from 'react';
+=======
+import { useState } from 'react';
+>>>>>>> 43e5ec57da1c2a0fee14d8ed39d99f418504bcb9
 import { motion } from 'framer-motion';
 import { validation } from './js/validation';
 import { HandleLogin } from './js/logindata';
