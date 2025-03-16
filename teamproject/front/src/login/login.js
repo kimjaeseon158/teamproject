@@ -1,6 +1,5 @@
 import './login.css';
 import { useState } from 'react';
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { validation } from './js/validation';
 import { HandleLogin } from './js/logindata';
