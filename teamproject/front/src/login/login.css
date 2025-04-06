@@ -3,8 +3,8 @@
     height:100vh;
     display:flex;
     justify-content:center;
-    align-items:center;
-    background:linear-gradient(#C3ACF9 35%,#A1FFEC 100%);
+    align-items:center; 
+    /* background-color: bisque; */
 }
 .loginBK{
     width:40%;
@@ -107,7 +107,7 @@
     border:none;
 }
 .loginBK  > .Staff-register,.Admin-register > .staff_subbox,.admin_subbox > .tooltip{
-    color:red;
+     /*  */
     font-size:15px;
 }
 .loginBK > .answerBtn{

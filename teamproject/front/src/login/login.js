@@ -2,9 +2,10 @@ import './login.css';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { validation } from './js/validation';
-import { HandleLogin } from './js/logindata';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
     const [id, setId] = useState("");
     const [password, setPassword] = useState("");
     const [otp, setOtp] = useState("");
@@ -17,7 +18,7 @@ const Login = () => {
 
     const rgxCnd = {
         adminId: /^[A-Za-z0-9]{6,16}$/,  
-        adminPassword: /^[A-Za-z0-9]{4,14}$/,  
+        adminPassword: /^[A-Za-z0-9]{6,14}$/,  
         adminOtp: /^\d{6}$/,
         staffId: /^[A-Za-z0-9]{6,16}$/,
         staffPw: /^[A-Za-z0-9]{4,14}$/
@@ -44,7 +45,10 @@ const Login = () => {
         }
     };
     const handlecheck = (e) => {
-        validation({
+
+        e.preventDefault();
+
+        const isValid = validation({
             id,
             setId,
             password,
@@ -55,12 +59,16 @@ const Login = () => {
             rgxCnd,
             setErrors
         });
-        HandleLogin(
-            id,
-            password,
-            otp,
-            role,
-        )
+
+        if (isValid) {
+            console.log("로그인 성공!");
+            navigate("/data");
+        } else {
+            console.log("로그인 실패!");
+        }
+        setId("");  
+        setPassword("");
+        setOtp("");
     };
 
     return (
@@ -127,7 +135,7 @@ const Login = () => {
                         onChange    = {handleChange}
                     />
                     {/* 로그인 버튼 클릭 시 오류 메시지 표시 */}
-                    {errors.passwordError && <span className="tooltip">{errors.passwordError}</span>}
+                    {errors.pwError && <span className="tooltip">{errors.pwError}</span>}
                 </div>
                 <div className = "admin_subbox">
                     <input
@@ -174,7 +182,7 @@ const Login = () => {
                         onChange    = {handleChange}
                     />
                     {/* 로그인 버튼 클릭 시 오류 메시지 표시 */}
-                    {errors.passwordError && <span className="tooltip">{errors.passwordError}</span>}
+                    {errors.pwError && <span className="tooltip">{errors.pwError}</span>}
                 </div>
             </motion.div>
 
