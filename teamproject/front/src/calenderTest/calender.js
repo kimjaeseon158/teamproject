@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { subMonths, addMonths } from "date-fns";
 import Option from "./index";
+import { CalendarDate } from "./index";
 
 const groupDatesByWeek = (startDay, endDay) => {
     const weeks = [];
@@ -30,7 +31,8 @@ const groupDatesByWeek = (startDay, endDay) => {
 
         let extraWeek = [];
         for (let i = 0; i < 7; i++) {
-            lastDate.setDate(lastDate.getDate() + 1);
+            const newDate = new Date(lastDate);
+            newDate.setDate(lastDate.getDate() + 1);
             extraWeek.push(new Date(lastDate));
         }
 
@@ -59,7 +61,7 @@ const Calendar = () => {
     const weeks = groupDatesByWeek(startDay, endDay);
 
     const hadleOntarget = (month,day) =>{
-        console.log(month,day);
+        CalendarDate(month,day);
         
     }
 
@@ -85,7 +87,11 @@ const Calendar = () => {
                 {weeks.map((week, i) => (
                     <tr key={i}>
                     {week.map((day, j) => (
-                        <td key={j} onClick={()=>hadleOntarget(day.getMonth()+1)}>
+                        <td key={j} onClick={()=>hadleOntarget(day.getMonth()+1,day.getDate())}
+                            style={{
+                                color: day.getMonth() === month ? "black" : "lightgray"
+                            }}
+                        >
                         {day.getDate()}
                         </td>
                     ))}

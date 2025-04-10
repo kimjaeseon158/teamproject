@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { validation } from './js/validation';
 import { useNavigate } from 'react-router-dom';
+import { HandleLogin } from './js/logindata';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Login = () => {
 
     const handleChange = (e) => {
       const { id, value } = e.target;
-      console.log(value)
+    //   console.log(value)
       // 값 업데이트
       switch (id) {
           case "adminId":
@@ -44,7 +45,7 @@ const Login = () => {
               console.log("값이 입력되지않음");
         }
     };
-    const handlecheck = (e) => {
+    const handlecheck = async (e) => {
 
         e.preventDefault();
 
@@ -60,9 +61,14 @@ const Login = () => {
             setErrors
         });
 
-        if (isValid) {
-            console.log("로그인 성공!");
-            navigate("/data");
+        if (isValid)  {
+            try{
+               await HandleLogin(id,password,otp,role);
+               navigate("/data");
+            }
+            catch(error){
+
+            }
         } else {
             console.log("로그인 실패!");
         }

@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import Calendar from "./calender";
+
+export const CalendarDate = ( month,day) =>{
+  console.log(month,day)
+}
 
 const Option = () => {
   const [records, setRecords] = useState([]);
@@ -23,7 +28,7 @@ const Option = () => {
       <h2 className="text-xl font-bold mb-4">작업 기록</h2>
       <form onSubmit={handleSubmit} className="space-y-3">
         <input
-          type="date"
+          type="text"
           value={date}
           onChange={(e) => setDate(e.target.value)}
           className="w-full p-2 border rounded"
