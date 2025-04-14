@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import Calendar from "./calender";
 
-export const CalendarDate = ( month,day) =>{
-  console.log(month,day)
-}
-
-const Option = () => {
+const Option = ({selectedDate }) => {
   const [records, setRecords] = useState([]);
   const [date, setDate] = useState("");
   const [location, setLocation] = useState("");
@@ -29,7 +25,7 @@ const Option = () => {
       <form onSubmit={handleSubmit} className="space-y-3">
         <input
           type="text"
-          value={date}
+          value={ selectedDate ? `${selectedDate.month}월 ${selectedDate.day}일` : "" }
           onChange={(e) => setDate(e.target.value)}
           className="w-full p-2 border rounded"
           required

@@ -32,8 +32,8 @@ const groupDatesByWeek = (startDay, endDay) => {
         let extraWeek = [];
         for (let i = 0; i < 7; i++) {
             const newDate = new Date(lastDate);
-            newDate.setDate(lastDate.getDate() + 1);
-            extraWeek.push(new Date(lastDate));
+            newDate.setDate(lastDate.getDate() + i + 1);
+            extraWeek.push(newDate);
         }
 
         weeks.push(extraWeek);
@@ -46,6 +46,7 @@ const groupDatesByWeek = (startDay, endDay) => {
 
 const Calendar = () => {
     const [date, setDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(null);
 
     const year  = date.getFullYear();
     const month = date.getMonth();
@@ -61,8 +62,8 @@ const Calendar = () => {
     const weeks = groupDatesByWeek(startDay, endDay);
 
     const hadleOntarget = (month,day) =>{
-        CalendarDate(month,day);
-        
+        const clickedDate = {"month": month,  "day": day};
+        setSelectedDate(clickedDate);
     }
 
     return (
@@ -100,7 +101,7 @@ const Calendar = () => {
                 </tbody>
             </table>
         </div>
-        <Option></Option>
+        <Option selectedDate={selectedDate} ></Option>
         </div>
     );
 };
