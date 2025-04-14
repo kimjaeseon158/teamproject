@@ -12,8 +12,8 @@ root.render(
   <BrowserRouter basename="/">
     <Routes>
       {/* <Route path="/" element={<App/>}></Route> */}
-      <Route path="/" element={<Login />} />
-      <Route path="/data" element={<Calendar />} />
+      {/* <Route path="/" element={<Login />} /> */}
+      <Route path="/" element={<Calendar />} />
     </Routes>
   </BrowserRouter>
 );
