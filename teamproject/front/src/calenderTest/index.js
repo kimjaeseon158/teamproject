@@ -9,7 +9,7 @@ const Option = ({ selectedDate }) => {
 
   const fetchLocations = () => {
     // 이 부분에 실제로 필요한 장소 목록을 불러오거나 고정값을 설정합니다.
-    const data = ["삼성전자(평택)", "삼성전자(기흥)", "삼성전자(아산)", "삼성전자(서울)", "가슴", "SEX"];
+    const data = [ "삼성전자(평택)", "삼성전자(기흥)", "삼성전자(아산)", "삼성전자(서울)" ];
     setLocationsList(data);
     setShowDropdown(true);
   };
@@ -37,10 +37,17 @@ const Option = ({ selectedDate }) => {
   return (
     <div className="max-w-lg mx-auto mt-10 p-5 border rounded-lg shadow-lg bg-white">
       <h2 className="text-xl font-bold mb-4">작업 기록</h2>
-      <p>선택된 날짜: {selectedDate.toLocaleDateString()}</p> {/* 선택된 날짜 표시 */}
       <form onSubmit={handleSubmit} className="space-y-3 relative">
         {/* 업체/장소 입력과 드롭다운 버튼 */}
         <div className="relative">
+          <input
+            type="text"
+            placeholder="날짜"
+            value={ selectedDate ? `${selectedDate.year}년 ${selectedDate.month}월 ${selectedDate.day}일` : "" }
+            onChange={(e) => setLocation(e.target.value)}
+            className="w-full p-2 border rounded"
+            required
+          />
           <input
             type="text"
             placeholder="업체/장소"

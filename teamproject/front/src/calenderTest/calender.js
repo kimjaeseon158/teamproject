@@ -29,8 +29,8 @@ const groupDatesByWeek = (startDay, endDay) => {
     let extraWeek = [];
     for (let i = 0; i < 7; i++) {
       const newDate = new Date(lastDate);
-      newDate.setDate(lastDate.getDate() + 1);
-      extraWeek.push(new Date(lastDate));
+      newDate.setDate(lastDate.getDate() + i + 1);
+      extraWeek.push(newDate);
     }
 
     weeks.push(extraWeek);
@@ -56,48 +56,45 @@ const Calendar = () => {
 
   const weeks = groupDatesByWeek(startDay, endDay);
 
-  const handleSelectDate = (month, day) => {
-    setSelectedDate(new Date(year, month - 1, day));
+  const hadleOntarget = (year,month, day) => {
+    setSelectedDate({"year":year, "month":month, "day":day});
   };
-
-  return (
-    <div>
-      <div>
-        <button onClick={() => setDate(subMonths(date, 1))}>이전 달</button>
-        <span>{year}년 {month + 1}월</span>
-        <button onClick={() => setDate(addMonths(date, 1))}>다음 달</button>
-        <table>
-          <thead>
-            <tr>
-              <th>일</th>
-              <th>월</th>
-              <th>화</th>
-              <th>수</th>
-              <th>목</th>
-              <th>금</th>
-              <th>토</th>
-            </tr>
-          </thead>
-          <tbody>
-            {weeks.map((week, i) => (
-              <tr key={i}>
-                {week.map((day, j) => (
-                  <td
-                    key={j}
-                    onClick={() => handleSelectDate(day.getMonth() + 1, day.getDate())}
-                    style={{
-                      color: day.getMonth() === month ? "black" : "lightgray"
-                    }}
-                  >
-                    {day.getDate()}
-                  </td>
+    return (
+        <div>
+        <div>
+            <button onClick={() => setDate(subMonths(date, 1))}>이전 달</button>
+            <span>{year}년 {month + 1}월</span>
+            <button onClick={() => setDate(addMonths(date, 1))}>다음 달</button>
+            <table>
+                <thead>
+                <tr>
+                    <th>일</th>
+                    <th>월</th>
+                    <th>화</th>
+                    <th>수</th>
+                    <th>목</th>
+                    <th>금</th>
+                    <th>토</th>
+                </tr>
+                    </thead>
+                <tbody>
+                {weeks.map((week, i) => (
+                    <tr key={i}>
+                    {week.map((day, j) => (
+                        <td key={j} onClick={()=>hadleOntarget(year,day.getMonth()+1,day.getDate())}
+                            style={{
+                                color: day.getMonth() === month ? "black" : "lightgray"
+                            }}
+                        >
+                        {day.getDate()}
+                        </td>
+                    ))}
+                    </tr>
                 ))}
-              </tr>
-            ))}
-          </tbody>
+                </tbody>
         </table>
       </div>
-      {selectedDate && <Option selectedDate={selectedDate} />} {/* 선택된 날짜를 Option 컴포넌트로 전달 */}
+      <Option selectedDate={selectedDate} />
     </div>
   );
 };
